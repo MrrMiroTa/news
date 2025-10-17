@@ -15,7 +15,6 @@ function App() {
   const [totalResults, setTotalResults] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
   const PAGE_SIZE = 20;
 
   const fetchNews = async () => {
@@ -23,7 +22,7 @@ function App() {
     setError(null);
     try {
       const response = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${category}&page=${currentPage}&pageSize=${PAGE_SIZE}&apiKey=${API_KEY}`
+        `/api/news?category=${category}&page=${currentPage}`
       );
       console.log(response);
       const articles = response.data.articles || [];
@@ -72,7 +71,10 @@ function App() {
         <div className="mb-6">
           <div className="flex flex-col items-start md:items-center gap-3">
             <div className="w-full md:w-auto">
-              <Category category={category} onCategoryChange={handleCategoryChange} />
+              <Category
+                category={category}
+                onCategoryChange={handleCategoryChange}
+              />
             </div>
           </div>
         </div>
