@@ -21,9 +21,8 @@ function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(
-        `/api/news?category=${category}&page=${currentPage}`
-      );
+      const response = await axios.get(`/api/news?category=${category}&page=${currentPage}`);
+
       console.log(response);
       const articles = response.data.articles || [];
       setNews(articles);
